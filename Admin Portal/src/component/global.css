@@ -1,0 +1,8 @@
+.sidebar {
+    width: 250px; /* Sidebar ki width jo aap chahate hain */
+    background-color: #f0f0f0; /* Sidebar ka background color */
+  }
+  
+  .content {
+    flex: 1; /* Content ko baki space mein adjust karne ke liye */
+  }

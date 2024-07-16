@@ -1,0 +1,41 @@
+body {
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.notification {
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.notification a {
+    color: #007bff;
+}
+
+.notification a:hover {
+    text-decoration: underline;
+}
+
+.main-section {
+    /* background-color: white; */
+    padding: 20px 40px;
+    margin-left: 240px;
+}
+
+.btn-custom {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-custom:hover {
+    background-color: #0056b3;
+}

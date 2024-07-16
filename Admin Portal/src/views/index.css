@@ -1,0 +1,57 @@
+.form-container {
+    width: 30%;
+}
+
+@media screen and (max-width: 1000px) {
+    .form-container {
+        width: 45%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .form-container {
+        width: 65%;
+    }
+}
+
+.form-div {
+    width: 30%;
+}
+
+.form-div img {
+    width: 200px;
+}
+
+.form-div input {
+    height: 45px;
+}
+/* 
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+} */
+
+@media (max-width: 768px) {
+    .custom-width {
+        width: 100%;
+    }
+}
+
+.change_pass_page_div {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.change_pass_page_div > div {
+    width: 31%;
+    text-align: center;
+}
+
+.main_divs {
+    height: 80vh;
+}

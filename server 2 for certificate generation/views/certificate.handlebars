@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Certificate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playwrite+FR+Trad:wght@100..400&family=Playwrite+NL:wght@100..400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Holtwood+One+SC&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Holtwood+One+SC&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Holtwood+One+SC&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0;
+        margin-top: 10px;
+      }
+      .certificate {
+        width: 700px;
+        max-width: 1100px;
+        height: 620px;
+        padding: 2%;
+        padding: 20px;
+        border: 2vh solid #2a4b7c;
+        position: relative;
+        background-color: #fff;
+      }
+      .header {
+        text-align: center;
+      }
+      .header h1 {
+        font-size: 25px;
+        font-family: "Playwrite NL", cursive;
+        font-optical-sizing: auto;
+        font-weight: bold;
+        font-style: normal;
+        margin: 0;
+      }
+      .header p {
+        font-size: 14px;
+        font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+        font-weight: bold;
+        margin: 0.5em 0;
+      }
+      .certificate-number {
+        position: absolute;
+        right: 0;
+        margin-block: 0px;
+        margin-inline-end: 0px;
+        width: 250px;
+        height: 100px;
+        text-align: center;
+      }
+      .certificate-number p {
+        font-size: 15px;
+        font-style: italic;
+      }
+      .batch-number {
+        font-size: 12px !important;
+        color: #2a4b7c;
+        word-break: break-word;
+      }
+      .content {
+        text-align: center;
+        margin-top: 20px;
+      }
+      .content p {
+        font-weight: bold;
+        font-size: 22px;
+        font-weight: bold;
+        margin: 10px 0;
+      }
+      .content .p1 {
+        font-weight: bold;
+        font-size: 22px;
+        margin-top: 30px;
+        position: relative;
+        right: 50px;
+      }
+      .content h2 {
+        font-size: 19px;
+        margin: 10px 0;
+        color: #2a4b7c;
+      }
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        position: absolute;
+        bottom: 20px;
+        width: 90%;
+        margin-block-start: 30px;
+        margin-inline: 30px;
+      }
+      .signature {
+        text-align: center;
+        margin-top: 20px;
+      }
+      .seal {
+        position: relative;
+        top: 20px;
+      }
+      .font_1 {
+        font-family: "Playwrite NL", cursive;
+      }
+      .student-name {
+        font-family: "Kanit", sans-serif;
+        font-weight: 700;
+        font-style: italic;
+        font-size: 22px !important;
+        white-space: nowrap;
+        overflow: hidden;
+        display: block;
+        text-overflow: ellipsis;
+      }
+      .course-name {
+        font-size: 22px !important;
+        word-break: break-word;
+        font-family: "Holtwood One SC", serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+      .course-duration {
+        font-family: "Kanit", sans-serif;
+        font-weight: 700;
+        font-style: italic;
+        font-size: 22px !important;
+      }
+      .course-start {
+        font-family: "Kanit", sans-serif;
+        font-weight: 700;
+        font-style: italic;
+        font-size: 22px !important;
+        color: #2a4b7c;
+      }
+      .course-end {
+        font-family: "Kanit", sans-serif;
+        font-weight: 700;
+        font-style: italic;
+        font-size: 22px !important;
+        color: #2a4b7c;
+      }
+      .signature p {
+        font-family: "Roboto", sans-serif;
+        font-weight: 800;
+        font-style: oblique;
+        font-size: 13px !important;
+      }
+      .qrPlace {
+        position: relative;
+      }
+      .qrCode {
+       
+        float: left !important;
+        position: relative;
+        top: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="certificate">
+      <div class="header">
+        <h1 class="font_1">Saylani Mass Training Programme</h1>
+        <p>
+          (Under the Education Department of Saylani Welfare International
+          Trust)
+        </p>
+        <div class="certificate-number">
+          <p>No: <span class="batch-number">{{batchNo}}</span></p>
+          {{!-- <p>No: <span class="batch-number">SMIT/2019/PA/B2/4127</span></p> --}}
+        </div>
+      </div>
+      <div class="content">
+        <div class="qrPlace">
+          <img class="qrCode" src="{{qrCodeUrl}}" width="100" alt="" />
+          <span class="font_1 p1">This Certifies that</span>
+        </div>
+        <h2 class="student-name">{{name}}</h2>
+        <p class="font_1">has successfully Completed</p>
+        <h2 class="course-name">{{course}}</h2>
+        <p class="font_1">Duration of Training course</p>
+        <h2 class="course-duration">{{rollno}}</h2>
+        {{!-- <p class="font_1">
+          from <span class="course-start">{{date}}</span> to
+          <span class="course-end">{{date}}</span>
+        </p> --}}
+      </div>
+      <div class="footer">
+        <div class="signature">
+          <p>CHAIRPERSON</p>
+          <p class="saylani">Saylani Welfare International Trust</p>
+        </div>
+        <div class="signature">
+          <p>HEAD OF DEPARTMENT</p>
+          <p class="saylani">Saylani Welfare International Trust</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+{{!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate</title>
+</head>
+<body>
+    <div>
+        <h1>Certificate of Completion</h1>
+        <p>This is to certify that <strong>{{name}}</strong> has successfully completed the <strong>{{course}}</strong> course on <strong>{{date}}</strong>.</p>
+        <p>CNIC: {{cnic}}</p>
+        <p>Batch No: {{batchNo}}</p>
+        <p>Roll No: {{rollno}}</p>
+        <img src="{{qrCodeUrl}}" alt="QR Code">
+    </div>
+</body>
+</html> --}}
