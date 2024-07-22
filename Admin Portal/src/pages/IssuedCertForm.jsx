@@ -31,8 +31,8 @@ export default function IssuedCertForm() {
                         <IssuedCertificateForm />
                         <SendEmail />
                     </div>
-                    <div className=" d-lg-none ">
-                        <Modals/>
+                    <div className="d-lg-none ">
+                        <Modals />
                     </div>
                 </div>
             </div>
@@ -44,25 +44,26 @@ export default function IssuedCertForm() {
                     <table className="table table-bordered mt-4">
                         <thead>
                             <tr>
-                                <th>Roll No</th>
-                                <th>Course Name</th>
-                                <th>Batch No</th>
-                                <th>Status</th>
-                                <th>Actions</th>
+                                <th className='text-center'>Roll No</th>
+                                <th className='text-center'>Course Name</th>
+                                <th className='text-center'>Batch No</th>
+                                <th className='text-center'>Status</th>
+                                <th className='text-center'>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {allStudentData.map((certificate) => (
                                 <tr key={certificate._id}>
-                                    <td>{certificate.rollno}</td>
-                                    <td>{certificate.course}</td>
-                                    <td>{certificate.batchNo}</td>
-                                    <td>
+                                    <td className='text-center'>{certificate.rollno}</td>
+                                    <td className='text-center'>{certificate.course}</td>
+                                    <td className='text-center'>{certificate.batchNo}</td>
+
+                                    <td className='d-flex align-items-center justify-content-center'>
                                         <span className='bg-primary text-white py-1 px-2 rounded-3' style={{ fontSize: "13px" }}>
-                                            complete
+                                            Completed
                                         </span>
                                     </td>
-                                    <td>
+                                    <td className='text-center'>
                                         <PdfButton pdfUrl={certificate.certificateUrl} />
                                     </td>
                                 </tr>

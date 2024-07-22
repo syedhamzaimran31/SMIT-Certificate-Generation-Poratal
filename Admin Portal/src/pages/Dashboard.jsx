@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../index.css';
 import AddCourses from '../component/AddCourse/AddCourses';
 import { GetAllCourse } from '../services/getAllCourse';
 import DeleteCourseButton from '../component/DeleteCourseButton/DeleteCourseButton';
 import Loader from '../component/Loader/Loader';
 import { useGlobalState } from '../contextApi/ContextApi';
+import '../index.css';
 
 export default function Dashboard() {
     const {allCourse, setAllCourses}= useGlobalState()

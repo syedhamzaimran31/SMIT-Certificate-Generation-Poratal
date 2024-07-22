@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
-import '../index.css';
 import { Link } from 'react-router-dom';
 import { logout } from '../services/use4rAutghentication';
 import { useGlobalState } from '../contextApi/ContextApi';
+import '../index.css';
 
 const Settings = () => {
   const{adminData}=useGlobalState()
@@ -22,9 +22,9 @@ const Settings = () => {
 
                 </div>
                 <div className="mb-3">
-                  <Link className='  btn chnge_pass_btn' to={'/email'}>Change Password</Link>
+                  <Link className='btn chnge_pass_btn' to={'/email'}>Change Password</Link>
                 </div>
-                <button className="btn btn-primary logout_btn" onClick={() => { logout() }}>Log Out</button>
+                <button className="btn btn-primary custom_btn logout_btn" onClick={() => { logout() }}>Log Out</button>
               </form>
             </div>
           

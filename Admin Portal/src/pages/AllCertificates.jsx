@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../index.css';
 import { GetAllCertificateData } from '../services/getAllCourse';
 import Loader from '../component/Loader/Loader';
 import { useGlobalState } from '../contextApi/ContextApi';
+import DeleteModal from '../component/Modals/AlertModal';
 import axios from 'axios';
+import '../index.css';
 
 function AllCertificates() {
     const { totalCertificaet, setTotalCertificate } = useGlobalState()
     const [certificateData, setCertificateData] = useState([]);
     const [getInput, setGetInput] = useState("")
     const [loading, setLoading] = useState(true);
+    const [toggleModal, setToggleModal] = useState(false);
+
+    const handleClose = () => setToggleModal(false);
 
     useEffect(() => {
         (async () => {
@@ -25,19 +29,19 @@ function AllCertificates() {
             }
         })();
     }, []);
-    
+
     const deleted = async (id) => {
         try {
-            alert("Delete this student")
             const response = await axios.delete(`http://localhost:8003/deleteCertificates/${id}`)
             if (response.data.status === 200) {
                 window.location.reload()
             }
         } catch (error) {
             console.error(error.message)
+        } finally {
+            setToggleModal(false);
         }
     }
-    //isEmail
 
     return (
         <div className="bg-white p-3 mb-3 rounded shadow-sm">
@@ -54,26 +58,28 @@ function AllCertificates() {
                     <table className="table table-bordered mt-4">
                         <thead>
                             <tr>
-                                <th>Roll No</th>
-                                <th>Course Name</th>
-                                <th>Batch No</th>
-                                <th>Status</th>
-                                <th>Actions</th>
+                                <th className='text-center'>Roll No</th>
+                                <th className='text-center'>Course Name</th>
+                                <th className='text-center'>Batch No</th>
+                                <th className='text-center'>Status</th>
+                                <th className='text-center'>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {certificateData.map((certificate) => (
                                 <tr key={certificate._id}>
-                                    <td>{certificate.rollno}</td>
-                                    <td>{certificate.course}</td>
-                                    <td>{certificate.batchNo}</td>
-                                    <td>
+                                    <td className='text-center'>{certificate.rollno}</td>
+                                    <td className='text-center'>{certificate.course}</td>
+                                    <td className='text-center'>{certificate.batchNo}</td>
+                                    <td className='d-flex align-items-center justify-content-center'>
                                         <span className='bg-primary text-white py-1 px-2 rounded-3' style={{ fontSize: "13px" }}>
                                             Unactive
                                         </span>
                                     </td>
-                                    <td>
-                                        <button className="btn btn-danger btn-sm m-1" onClick={() => { deleted(certificate._id) }}>Delete</button>
+                                    <td className='text-center'>
+                                        <button className="btn btn-danger btn-sm m-1" onClick={() => setToggleModal(true)}>Delete</button>
+
+                                        <DeleteModal show={toggleModal} handleClose={handleClose} handleDelete={() => deleted(certificate._id)} body="Do you want to delete this Student's Certificate?" />
                                     </td>
                                 </tr>
                             ))}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Adminportal from '../Adminportal'
 
-function NavbarWithSideBar({children}) {
+function NavbarWithSideBar({ children }) {
     const [isXL, setIsXL] = useState(window.innerWidth >= 1200);
     const [isMD, setIsMD] = useState(window.innerWidth >= 768 && window.innerWidth < 1200);
 
@@ -16,16 +16,17 @@ function NavbarWithSideBar({children}) {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-  return (
-    <>
-        <div className="sticky-top">
-            <Adminportal/>
-        </div>
-        <div className="mt-4  px-3"style={{ marginLeft: isXL ? "22%" : "0" }}>
-            <main>{children}</main>
-        </div>
-    </>
-  )
+    return (
+        <>
+            <div className="sticky-top">
+                <Adminportal />
+            </div>
+            <div className="mt-4 px-3">
+                <main>{children}</main>
+            </div>
+            {/* style={{ marginLeft: isXL ? "22%" : "0" }} */}
+        </>
+    )
 }
 
 export default NavbarWithSideBar

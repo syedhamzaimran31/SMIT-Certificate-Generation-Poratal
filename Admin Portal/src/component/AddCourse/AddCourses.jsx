@@ -3,6 +3,7 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import DeleteModal from '../Modals/AlertModal';
 
 function AddCourses() {
     const [show, setShow] = useState(false);
@@ -36,7 +37,7 @@ function AddCourses() {
 
     return (
         <>
-            <Button variant="primary" className='fw-semibold' onClick={handleShow}>
+            <Button variant="primary" className='fw-semibold custom_btn custom_green px-3' onClick={handleShow}>
                 Add Course
             </Button>
 

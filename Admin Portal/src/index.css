@@ -1,0 +1,13 @@
+.custom_btn {
+    transition: all .2s ease !important;
+}
+
+.custom_btn:hover {
+    transform: scale(1.08);
+}
+
+.custom_green {
+    background-color: #8dc63f !important;
+    color: white !important;
+    border: 1px solid #0d6efd !important;
+}

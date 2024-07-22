@@ -95,7 +95,7 @@ const Sidebar = () => {
     const location = useLocation();
 
     useEffect(() => {
-        const path = location.pathname.split('/')[1]; // Adjusted to split by '/' and take the first part
+        const path = location.pathname.split('/')[1]; 
         setActiveButton(path || 'home'); 
     }, [location]);
 
@@ -104,7 +104,7 @@ const Sidebar = () => {
     };
 
     return (
-        <aside className="sidebar bg-dark text-white p-3 ">
+        <aside className="sidebar text-white p-3 bg-dark">
             <div className="d-flex align-items-center pb-3 mb-3 border-bottom">
                 <span className="fs-4">Admin Portal</span>
             </div>

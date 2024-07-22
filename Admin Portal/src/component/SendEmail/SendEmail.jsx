@@ -1,37 +1,50 @@
-import axios from 'axios'
-import React, { memo } from 'react'
+import axios from 'axios';
+import React, { memo, useState } from 'react';
+import AlertModal from '../Modals/AlertModal';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 
 function SendEmail() {
-    const sendEmail = async () => {
+    const [toggleModal, setToggleModal] = useState(false);
 
-        alert("Sending Emails....")
+    const handleClose = () => setToggleModal(false);
+
+    const sendEmail = async () => {
+        handleClose();
+
+        toastr.info("Sending Emails...")
+
         try {
-            const response = await axios.post("http://localhost:8003/send-Email")
-            const successStatus = await response.status
-            if (successStatus.status === 200) {
-                alert("Sending Email is Done!");
+            const response = await axios.post("http://localhost:8003/send-Email");
+            const successStatus = response.status;
+
+            if (successStatus === 200) {
+                toastr.success("Emails sent successfully!");
             } else {
-                alert("Failed to generate certificates. Status: " + successStatus);
+                toastr.warning(`Failed to send emails. Status: ${successStatus}`);
             }
         } catch (error) {
             if (error.response) {
-                if (error.response.status === 404) {
-                    alert("Emails alreadysends. Please try again");
+                const status = error.response.status;
+                if (status === 404) {
+                    toastr.warning("Emails have already been sent.");
                 } else {
-                    alert("Emails alreadysends. Failed to sending emails.");
+                    toastr.warning(`Failed to send emails. Status: ${status}`);
                 }
             } else if (error.request) {
-                alert("Network error. Failed to communicate with server.");
+                toastr.error("Network error. Unable to communicate with the server.");
             } else {
-                alert("Error sending emails: " + error.message);
+                toastr.error(`Error sending emails: ${error.message}`);
             }
         }
+
     }
     return (
         <>
-            <button className="btn btn-primary" onClick={sendEmail}>Send Email</button>
+            <button className="btn custom_green custom_btn" onClick={() => setToggleModal(true)}>Send Email</button>
+            <AlertModal show={toggleModal} handleClose={handleClose} handleDelete={sendEmail} title="Confirm Email Sending" body="Are you sure you want to send emails?" />
         </>
     )
 }
 
-export default memo(SendEmail)
+export default memo(SendEmail);

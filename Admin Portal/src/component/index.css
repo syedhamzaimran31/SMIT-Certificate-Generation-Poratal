@@ -13,19 +13,20 @@
     cursor: pointer;
     width: 100%;
     text-align: left;
+    margin-top: 10px;
 }
 
 .sidebar button:hover {
-    background-color: #0056b3;
+    background-color: #0059dfa1;
 }
 
 .nav-link.active {
-    background-color: #0d6efd;
+    color: #0d6db7 !important;
 }
 
-.nav-link.active:hover {
-    background-color: #0d6efd;
-}
+/* .nav-link.active:hover {
+    color: #0d6db7 !important;
+} */
 
 
 .create_cert input,
@@ -64,15 +65,18 @@ option {
     display: flex;
     gap: 20px !important;
 }
-.abc{
+
+.abc {
     gap: 3px 0px;
 }
+
 .batch-status-card {
     background-color: #f8f9fa;
     border: 1px solid #dee2e6;
     border-radius: 5px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 180px;
 }
 
 .batch-status-card.completed {
@@ -112,9 +116,10 @@ option {
 }
 
 .chnge_pass_btn:hover {
-    background-color: rgb(245, 245, 245);
-    border: 1px solid rgb(211, 211, 211);
-    box-shadow: 1px 1px 5px 1px rgb(218, 218, 218);
+    /* background-color: rgb(245, 245, 245); */
+    /* border: 1px solid rgb(211, 211, 211); */
+    box-shadow: 1px 1px 15px 1px rgb(211, 211, 211);
+    transform: scale(1.02);
 }
 
 .logout_btn {
@@ -126,4 +131,94 @@ option {
     text-decoration: none;
 }
 
+.custom-sidebar {
+    background-color: #0f4c75;
+}
 
+.navs_div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navs ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navs ul li {
+    margin: 0 15px;
+    position: relative;
+}
+
+.navs ul li .nav-link {
+    text-decoration: none;
+    color: #333;
+    padding: 5px 0;
+    display: block;
+}
+
+.navs ul li .nav-link:hover {
+    color: #28a745;
+}
+
+.navs ul li::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #28a745;
+    transition: width 0.3s ease-out, left 0.3s ease-out, right 0.3s ease-out;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.navs ul li:hover::after {
+    width: 100%;
+    left: 0;
+    right: auto;
+}
+
+.navs ul li:not(:hover)::after {
+    width: 0;
+    left: 50%;
+    right: 50%;
+}
+
+.profile {
+    position: relative;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    width: 350px;
+    font-size: 15px;
+}
+
+.profile .dropdown-menu {
+    display: none;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    position: absolute;
+    right: 0;
+    top: 60px;
+    z-index: 1000;
+}
+
+.profile.show .dropdown-menu {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#arrow-icon {
+    transition: all 0.3s ease;
+}
+
+.profile.show #arrow-icon {
+    transform: rotate(180deg);
+}

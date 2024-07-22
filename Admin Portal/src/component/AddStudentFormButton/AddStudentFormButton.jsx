@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useGlobalState } from '../../contextApi/ContextApi';
 import axios from 'axios';
 import BackButton from '../BackButton/BackButton';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
+import AlertModal from '../Modals/AlertModal';
 
 function AddStudentFormButton() {
     const {
@@ -14,12 +17,21 @@ function AddStudentFormButton() {
         rollNo, setRollNo
     } = useGlobalState();
 
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertBody, setAlertBody] = useState('');
+    const [alertTitle, setAlertTitle] = useState('');
+
+    const handleCloseAlert = () => setShowAlert(false);
+
     const submit = async () => {
         try {
-            if (!studentName || !courseName || !currentDate || !studentEmail || !studentCnic || !batchNo  ) {
-                alert("Something went wrong. Please fill all fields.");
-                // return;
+            if (!studentName || !courseName || !currentDate || !studentEmail || !studentCnic || !batchNo) {
+                setAlertTitle('Form Incomplete');
+                setAlertBody('Something went wrong. Please fill all fields.');
+                setShowAlert(true);
+                return;
             }
+
             const response = await axios.post("http://localhost:8003/addStudents", {
                 name: studentName,
                 course: courseName,
@@ -27,35 +39,34 @@ function AddStudentFormButton() {
                 email: studentEmail,
                 cnic: studentCnic,
                 batchNo: batchNo,
-                // rollno: rollNo
             });
-            if (response.status === 200) {
-                alert("Certificates generated successfully");
-                setStudentName("")
-                setCourseName("")
-                setCurrentDate("")
-                setStudentEmail("")
-                setStudentCnic("")
-                setBatchNo("")
-                setRollNo("")
-            } else {
-                alert("Failed to generate certificates. Status: " + response.status);
-            }
 
+            if (response.status === 200) {
+                toastr.success("Student added successfully");
+                setStudentName("");
+                setCourseName("");
+                setCurrentDate("");
+                setStudentEmail("");
+                setStudentCnic("");
+                setBatchNo("");
+                setRollNo("");
+            } else {
+                toastr.warning(`Failed to add student. Status: ${response.status}`);
+            }
         } catch (error) {
             if (error.response) {
                 if (error.response.status === 404) {
-                    alert("Please check your inputs.");
+                    toastr.warning("Please check your inputs.");
                 } else {
-                    alert("Internal Server Error. Failed to add students.");
+                    toastr.warning(`Failed to add student. Status: ${error.response.status}`);
                 }
             } else if (error.request) {
-                alert("Network error. Failed to communicate with server.");
+                toastr.error("Network error. Unable to communicate with the server.");
             } else {
-                alert("Error add students: " + error.message);
+                toastr.error(`Error adding students: ${error.message}`);
             }
         }
-    }
+    };
 
     return (
         <div className="col-lg-6 col-md-12 col-sm-12">
@@ -63,8 +74,15 @@ function AddStudentFormButton() {
                 <button className="btn btn-primary" onClick={submit}>Add Student</button>
                 <BackButton />
             </div>
+            <AlertModal
+                show={showAlert}
+                handleClose={handleCloseAlert}
+                handleDelete={handleCloseAlert}
+                title={alertTitle}
+                body={alertBody}
+            />
         </div>
-    )
+    );
 }
 
 export default AddStudentFormButton;

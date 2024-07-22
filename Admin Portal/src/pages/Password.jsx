@@ -14,11 +14,12 @@ function Password() {
     let Continue = async () => {
         try {
             if (!getPassword) {
-                alert("Invalid Credential")
+                setError("Password cannot be empty.");
+                return;
             }
-            setLoading(true)
+            setLoading(true);
             const response = await axios.post('http://localhost:8003/login', {
-                id: "66905b7f605369b71961fc9f",
+                id: "66901cab7120dc516f461e17",
                 password: getPassword
             });
             if (response.data.status === 200) {
@@ -29,18 +30,35 @@ function Password() {
             }
         } catch (error) {
             if (error.response) {
-                if (error.response.status === 404) {
-                    setError("Incorrect Password.Please check your inputs.");
-                } else {
-                    alert("Internal Server Error. Failed to issue certificates.");
+                switch (error.response.status) {
+                    case 400:
+                        setError("Bad Request. Please check your input.");
+                        break;
+                    case 401:
+                        setError("Unauthorized. Incorrect password.");
+                        break;
+                    case 403:
+                        setError("Forbidden. You do not have access.");
+                        break;
+                    case 404:
+                        setError("Incorrect Password. Please check your inputs.");
+                        break;
+                    case 429:
+                        setError("Too Many Requests. Please try again later.");
+                        break;
+                    case 500:
+                        setError("Incorrect Password. Please check your inputs.");
+                        break;
+                    default:
+                        setError("An unexpected error occurred.");
                 }
             } else if (error.request) {
-                alert("Network error. Failed to communicate with server.");
+                setError("Network error. Failed to communicate with server.");
             } else {
                 setError("Error issuing certificate: " + error.message);
             }
         } finally {
-            setLoading(false)
+            setLoading(false);
         }
     }
     return (
@@ -51,20 +69,20 @@ function Password() {
                         <div className='mb-4 d-flex justify-content-center mb-5 pb-2'>
                             <img src={logo} width={160} />
                         </div>
-                        <p>{error}</p>
                         <div className='form-floating mb-3'>
                             <input
                                 type="password"
-                                className="form-control"
+                                className={`form-control ${error ? 'is-invalid' : ''}`}
                                 id="password"
                                 placeholder="Enter your password"
                                 style={{ boxShadow: "none", outline: "none" }}
-                                onChange={(e) => { setGetPassword(e.target.value) }}
+                                onChange={(e) => { setGetPassword(e.target.value); setError(''); }}
                             />
                             <label htmlFor="password">Enter our password</label>
+                            <div className="invalid-feedback">{error}</div>
                         </div>
                         <div className='d-grid mt-3'>
-                            <button className='btn btn-primary' onClick={Continue} >
+                            <button className='btn btn-primary' onClick={Continue} disabled={loading}>
                                 {loading ? 'Loading...' : 'Continue'}
                             </button>
                         </div>

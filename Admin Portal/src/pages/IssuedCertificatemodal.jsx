@@ -5,6 +5,9 @@ import IssuedCertificateForm from '../component/IssuedCertificateForm/IssuedCert
 import { useGlobalState } from '../contextApi/ContextApi';
 import axios from 'axios';
 import IssuedCertificateFromRollNumber from '../component/IssuedCertificateFromRollNumber/IssuedCertificateFromRollNumber';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
+
 function IssuedCertificatemodal() {
     const { setError, rollNo, setRollNo, issuedBatchNo, setIssuedBatchNo, issuedCourseName, setIssuedCourseName } = useGlobalState()
 
@@ -14,6 +17,7 @@ function IssuedCertificatemodal() {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
     const ISSUEDcERTIFICATE = async () => {
         const rollNumberArray = rollNo.split(',').map(Number);
         // if (!issuedBatchNo | !issuedCourseName || !rollNo) {
@@ -25,36 +29,37 @@ function IssuedCertificatemodal() {
         setIssuedBatchNo("");
         setIssuedCourseName("");
         setRollNo("")
-        alert("Certificates generated successfully");
+        toastr.info("Certificates generation in progress...");
+
         try {
             const response = await axios.post('http://localhost:8003/generate', {
                 batchno: issuedBatchNo.toLowerCase(),
                 course: issuedCourseName.toLowerCase(),
-                rollno:rollNumberArray
+                rollno: rollNumberArray
             });
             const successStatus = await response.status
 
             if (successStatus === 200) {
-                alert("Certificates generated successfully");
+                toastr.success("Certificates generated successfully");
                 handleClose();
                 setError("");
                 setIssuedBatchNo("");
                 setIssuedCourseName("");
             } else {
-                alert("Failed to generate certificates. Status: " + successStatus);
+                toastr.error("Failed to generate certificates. Status: " + successStatus);
             }
 
         } catch (error) {
             if (error.response) {
                 if (error.response.status === 404) {
-                    alert("Certificates not found on server. Please check your inputs.");
+                    toastr.warning("Certificates not found on server. Please check your inputs.");
                 } else {
-                    alert("Internal Server Error. Failed to issue certificates.");
+                    toastr.error("Internal Server Error. Failed to issue certificates.");
                 }
             } else if (error.request) {
-                alert("Network error. Failed to communicate with server.");
+                toastr.error("Network error. Failed to communicate with server.");
             } else {
-                alert("Error issuing certificate: " + error.message);
+                toastr.error("Error issuing certificate: " + error.message);
             }
         }
     }
@@ -69,8 +74,8 @@ function IssuedCertificatemodal() {
     }
 
     return (
-        <>
-            <Button variant="primary" onClick={handleShow}>
+        <div className='d-inline'>
+            <Button variant="primary" onClick={handleShow} className='custom_btn me-2'>
                 Isuued certificate
             </Button>
 
@@ -97,7 +102,7 @@ function IssuedCertificatemodal() {
                     </Button>
                 </Modal.Footer>
             </Modal>
-        </>
+        </div>
     )
 }
 

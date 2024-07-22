@@ -16,7 +16,7 @@ function Password() {
     let Done = async () => {
         try {
             if (!validateEmail.test(getEmail)) {
-                return setGetEmailerror("Invalid Credential.Please chcek the input!")
+                return setGetEmailerror("Invalid Credential.Please check the input!")
             }
             setLoading(true)
             const response = await axios.post('http://localhost:8003/sendOtp', {
