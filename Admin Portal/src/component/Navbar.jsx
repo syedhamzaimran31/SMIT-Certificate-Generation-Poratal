@@ -56,7 +56,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="d-flex justify-content-between shadow-sm align-items-center py-3 px-5 bg-white position-sticky sticky-top border-bottom">
+            <nav className="d-flex justify-content-between shadow-sm align-items-center py-3 px-5 bg-white position-sticky sticky-top border-bottom zindex-tooltip">
                 <div className="d-flex justify-content-center align-items-center">
                     <div>
                         <OffcanvasButton />
@@ -88,16 +88,16 @@ export default function Navbar() {
                             </li>
                         </ul>
                     </div>
-                    <div className={`d-flex align-items-center justify-content-end profile ms-3 dropdown ${dropdownOpen ? 'show' : ''}`} ref={dropdownRef}>
-                        <div className='dropdown-toggle overflow-hidden' type="button" onClick={handleDropdownClick} aria-expanded={dropdownOpen ? "true" : "false"}>
+                    <div className="d-flex align-items-center justify-content-end profile ms-3 dropdown" ref={dropdownRef}>
+                        <div className='dropdown-toggle zindex-tooltip bg-white overflow-hidden' type="button" onClick={handleDropdownClick} aria-expanded={dropdownOpen ? "true" : "false"}>
 
                             <img src="https://www.freeiconspng.com/thumbs/profile-icon-png/profile-icon-9.png" alt="Profile" className="rounded-circle" width="40" height="40" id="dropdownMenuButton" />
 
                             <span className="ms-2 fw-semibold">{adminData}</span>
                         </div>
-                        <ul className="dropdown-menu" >
-                            <li><Link className="dropdown-item" to="/settings">Settings</Link></li>
-                            <li className="dropdown-item">Logout</li>
+                        <ul className={`dropdown-menu custom_dropdownMenu ${dropdownOpen ? 'show' : ''}`} >
+                            <li><Link className="dropdown-item custom_CSS_li" to="/settings">Settings</Link></li>
+                            <li className="dropdown-item custom_CSS_li">Logout</li>
                         </ul>
                     </div>
                 </div>

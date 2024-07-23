@@ -57,10 +57,6 @@ option {
     margin-bottom: 5px;
 }
 
-.nav_header {
-    z-index: 1000;
-}
-
 .batch-status-container {
     display: flex;
     gap: 20px !important;
@@ -198,27 +194,32 @@ option {
     font-size: 15px;
 }
 
-.profile .dropdown-menu {
-    display: none;
+.profile .custom_dropdownMenu {
+    display: block;
     opacity: 0;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
+    transform: translateY(-15px);
+    transition: opacity .3s ease, transform .5s ease;
     position: absolute;
     right: 0;
-    top: 60px;
-    z-index: 1000;
+    top: -150px;
+    z-index: -100 !important;
 }
 
-.profile.show .dropdown-menu {
+.profile .custom_dropdownMenu.show {
     display: block;
     opacity: 1;
     transform: translateY(0);
+    top: 60px;
 }
 
-#arrow-icon {
-    transition: all 0.3s ease;
+.custom_CSS_li {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    transition: all .3s ease;
 }
 
-.profile.show #arrow-icon {
-    transform: rotate(180deg);
+.custom_CSS_li:hover {
+    background-color: #8dc63f;
+    color: white;
 }
