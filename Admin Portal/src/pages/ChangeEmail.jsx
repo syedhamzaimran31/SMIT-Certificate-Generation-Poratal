@@ -7,7 +7,7 @@ import { toast } from 'sonner';
 function ChangeEmail() {
     const [getOldEmail, setOldGetEmail] = useState("")
     const [getNewEmail, setNewGetEmail] = useState("")
-    const [getEmailerror, setGetEmailerror] = useState("")
+    const [error, setError] = useState("")
     const [loading, setLoading] = useState(false);
 
     const validateEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -15,7 +15,7 @@ function ChangeEmail() {
     let Done = async () => {
         try {
             if (!validateEmail.test(getOldEmail) || !validateEmail.test(getNewEmail)) {
-                return setGetEmailerror("Invalid Credentials.Please chcek the input!")
+                return setError("Invalid Credentials. Please check the input!")
             }
             setLoading(true)
             const response = await axios.post('http://localhost:8003/updateemail', {
@@ -38,7 +38,7 @@ function ChangeEmail() {
             } else {
                 toast.error("Error issuing certificate: " + error.message);
             }
-        }finally{
+        } finally {
             setLoading(false)
         }
     }
@@ -54,31 +54,31 @@ function ChangeEmail() {
                         <div className='form-floating mb-3'>
                             <input
                                 type="email"
-                                className="form-control"
+                                className={`form-control ${error ? 'is-invalid' : ''}`}
                                 id="email"
                                 placeholder="Enter your email"
                                 style={{ boxShadow: "none", outline: "none" }}
-                                onChange={(e) => { setOldGetEmail(e.target.value) }}
+                                onChange={(e) => { setOldGetEmail(e.target.value); setError(''); }}
                             />
                             <label htmlFor="email">Enter Email</label>
-                            <p className="text-danger">{getEmailerror}</p>
+                            <div className="invalid-feedback">{error}</div>
                         </div>
                         <div className='form-floating mb-3'>
                             <input
                                 type="email"
-                                className="form-control"
+                                className={`form-control ${error ? 'is-invalid' : ''}`}
                                 id="email"
                                 placeholder="Enter your email"
                                 style={{ boxShadow: "none", outline: "none" }}
-                                onChange={(e) => { setNewGetEmail(e.target.value) }}
+                                onChange={(e) => { setNewGetEmail(e.target.value); setError(''); }}
                             />
                             <label htmlFor="email">Enter New Email</label>
-                            <p className="text-danger">{getEmailerror}</p>
+                            <div className="invalid-feedback">{error}</div>
                         </div>
 
                         <div className='d-grid mt-3'>
                             <button className='btn btn-primary w-100' onClick={Done}>
-                            {loading ? 'Loading...' : 'Continue'}
+                                {loading ? 'Loading...' : 'Continue'}
                             </button>
                         </div>
                     </div>

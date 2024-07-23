@@ -9,7 +9,7 @@ import '../index.css';
 function Password() {
     const { setOtpVerificationEmail } = useGlobalState()
     const [getEmail, setGetEmail] = useState("")
-    const [getEmailerror, setGetEmailerror] = useState("")
+    const [error, setError] = useState("")
     const [loading, setLoading] = useState(false);
 
     const validateEmail = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -17,7 +17,7 @@ function Password() {
     let Done = async () => {
         try {
             if (!validateEmail.test(getEmail)) {
-                return setGetEmailerror("Invalid Credential.Please check the input!")
+                return setError("Invalid Credential. Please check the input!");
             }
             setLoading(true)
             const response = await axios.post('http://localhost:8003/sendOtp', {
@@ -55,14 +55,14 @@ function Password() {
                         <div className='form-floating mb-3 '>
                             <input
                                 type="email"
-                                className="form-control"
+                                className={`form-control ${error ? 'is-invalid' : ''}`}
                                 id="email"
                                 placeholder="Enter your email"
                                 style={{ boxShadow: "none", outline: "none" }}
-                                onChange={(e) => { setGetEmail(e.target.value) }}
+                                onChange={(e) => { setGetEmail(e.target.value); setError(''); }}
                             />
                             <label htmlFor="email">Enter Email</label>
-                            <p className='text-danger'>{getEmailerror}</p>
+                            <div className="invalid-feedback">{error}</div>
                         </div>
 
                         <div className='d-grid mt-3'>
