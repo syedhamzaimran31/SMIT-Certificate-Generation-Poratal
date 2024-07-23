@@ -1,8 +1,7 @@
 import axios from 'axios';
 import React, { memo, useState } from 'react';
 import AlertModal from '../Modals/AlertModal';
-import toastr from 'toastr';
-import 'toastr/build/toastr.min.css';
+import { toast } from 'sonner';
 
 function SendEmail() {
     const [toggleModal, setToggleModal] = useState(false);
@@ -12,29 +11,29 @@ function SendEmail() {
     const sendEmail = async () => {
         handleClose();
 
-        toastr.info("Sending Emails...")
+        toast.info("Sending Emails...")
 
         try {
             const response = await axios.post("http://localhost:8003/send-Email");
             const successStatus = response.status;
 
             if (successStatus === 200) {
-                toastr.success("Emails sent successfully!");
+                toast.success("Emails sent successfully!");
             } else {
-                toastr.warning(`Failed to send emails. Status: ${successStatus}`);
+                toast.warning(`Failed to send emails. Status: ${successStatus}`);
             }
         } catch (error) {
             if (error.response) {
                 const status = error.response.status;
                 if (status === 404) {
-                    toastr.warning("Emails have already been sent.");
+                    toast.warning("Emails have already been sent.");
                 } else {
-                    toastr.warning(`Failed to send emails. Status: ${status}`);
+                    toast.warning(`Failed to send emails. Status: ${status}`);
                 }
             } else if (error.request) {
-                toastr.error("Network error. Unable to communicate with the server.");
+                toast.error("Network error. Unable to communicate with the server.");
             } else {
-                toastr.error(`Error sending emails: ${error.message}`);
+                toast.error(`Error sending emails: ${error.message}`);
             }
         }
 

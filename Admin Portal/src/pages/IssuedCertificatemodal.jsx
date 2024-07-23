@@ -5,8 +5,7 @@ import IssuedCertificateForm from '../component/IssuedCertificateForm/IssuedCert
 import { useGlobalState } from '../contextApi/ContextApi';
 import axios from 'axios';
 import IssuedCertificateFromRollNumber from '../component/IssuedCertificateFromRollNumber/IssuedCertificateFromRollNumber';
-import toastr from 'toastr';
-import 'toastr/build/toastr.min.css';
+import { toast } from 'sonner';
 
 function IssuedCertificatemodal() {
     const { setError, rollNo, setRollNo, issuedBatchNo, setIssuedBatchNo, issuedCourseName, setIssuedCourseName } = useGlobalState()
@@ -29,7 +28,7 @@ function IssuedCertificatemodal() {
         setIssuedBatchNo("");
         setIssuedCourseName("");
         setRollNo("")
-        toastr.info("Certificates generation in progress...");
+        toast.info("Certificates generation in progress...");
 
         try {
             const response = await axios.post('http://localhost:8003/generate', {
@@ -40,26 +39,26 @@ function IssuedCertificatemodal() {
             const successStatus = await response.status
 
             if (successStatus === 200) {
-                toastr.success("Certificates generated successfully");
+                toast.success("Certificates generated successfully");
                 handleClose();
                 setError("");
                 setIssuedBatchNo("");
                 setIssuedCourseName("");
             } else {
-                toastr.error("Failed to generate certificates. Status: " + successStatus);
+                toast.error("Failed to generate certificates. Status: " + successStatus);
             }
 
         } catch (error) {
             if (error.response) {
                 if (error.response.status === 404) {
-                    toastr.warning("Certificates not found on server. Please check your inputs.");
+                    toast.warning("Certificates not found on server. Please check your inputs.");
                 } else {
-                    toastr.error("Internal Server Error. Failed to issue certificates.");
+                    toast.error("Internal Server Error. Failed to issue certificates.");
                 }
             } else if (error.request) {
-                toastr.error("Network error. Failed to communicate with server.");
+                toast.error("Network error. Failed to communicate with server.");
             } else {
-                toastr.error("Error issuing certificate: " + error.message);
+                toast.error("Error issuing certificate: " + error.message);
             }
         }
     }

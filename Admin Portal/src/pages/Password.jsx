@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import logo from "../assets/logo.png";
 import { useGlobalState } from '../contextApi/ContextApi';
+import { toast } from 'sonner';
 
 function Password() {
     const { setIsUserToken } = useGlobalState()
@@ -27,6 +28,7 @@ function Password() {
                 setIsUserToken(response.data.token)
                 navigate("/home")
                 window.location.reload()
+                toast.success("Signed In Successfully");
             }
         } catch (error) {
             if (error.response) {

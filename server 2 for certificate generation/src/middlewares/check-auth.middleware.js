@@ -9,6 +9,7 @@ const checkAuth = (req, res, next) => {
             return res.status(401).json({ status: 401, success: false, message: 'unauthorized', data: null })
         }
         const isValid = jwt.verify(token.slice(7), serverConfig.secretKey)
+        console.log(isValid);
         console.log(token)
         next()
     } catch (error) {

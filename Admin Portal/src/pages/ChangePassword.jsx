@@ -2,8 +2,7 @@ import React, { memo, useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import logo from "../assets/logo.png";
-import toastr from 'toastr';
-import 'toastr/build/toastr.min.css';
+import { toast } from 'sonner';
 import "../index.css";
 
 function Newpass() {
@@ -15,10 +14,10 @@ function Newpass() {
   let changePassword = async () => {
     try {
       if (!newPassorwdGet && !confirmPassorwdGet) {
-        return toastr.warning("something went wrong")
+        return setError("All fields must be filled!");
       }
       if (newPassorwdGet !== confirmPassorwdGet) {
-        return alert("Invalid Password")
+        return setError("Password must be same!")
       }
       const response = await axios.post('http://localhost:8003/updatepass', {
         id: "66901cab7120dc516f461e17",
@@ -28,7 +27,7 @@ function Newpass() {
         navigate("/home")
       }
     } catch (error) {
-      console.error(error.message)
+      toast.error(error.message);
     }
   }
   return (
@@ -43,13 +42,14 @@ function Newpass() {
             <div className="form-floating mb-3">
               <input
                 type="password"
-                className="form-control custom-width"
+                className={`form-control custom-width ${error ? 'is-invalid' : ''}`}
                 id="newPassword"
                 placeholder="New password *"
                 style={{ boxShadow: "none", outline: "none" }}
-                onChange={(e) => { setNewPasswordGet(e.target.value) }}
+                onChange={(e) => { setNewPasswordGet(e.target.value); setError(''); }}
               />
               <label htmlFor="newPassword">New Password</label>
+              <div className="invalid-feedback">{error}</div>
             </div>
             <div className="form-floating mb-4">
               <input

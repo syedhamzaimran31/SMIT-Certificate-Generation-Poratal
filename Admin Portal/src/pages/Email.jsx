@@ -2,8 +2,9 @@ import React, { memo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import logo from "../assets/logo.png";
-import '../index.css';
 import { useGlobalState } from '../contextApi/ContextApi';
+import { toast } from 'sonner';
+import '../index.css';
 
 function Password() {
     const { setOtpVerificationEmail } = useGlobalState()
@@ -29,16 +30,16 @@ function Password() {
         } catch (error) {
             if (error.response) {
                 if (error.response.status === 404) {
-                    alert("Incorrect Email.Please check your inputs.");
+                    toast.warning("Incorrect Email. Please check your inputs.");
                 } else {
-                    alert("Internal Server Error. ");
+                    toast.error("Internal Server Error. ");
                 }
             } else if (error.request) {
-                alert("Network error. Failed to communicate with server.");
+                toast.error("Network error. Failed to communicate with server.");
             } else {
-                alert("Error issuing certificate: " + error.message);
+                toast.error("Error issuing certificate: " + error.message);
             }
-        }finally{
+        } finally {
             setLoading(false)
         }
     }
@@ -66,13 +67,13 @@ function Password() {
 
                         <div className='d-grid mt-3'>
                             <button className='btn btn-primary w-100' onClick={Done}>
-                            {loading ? 'Loading...' : 'Continue'}
+                                {loading ? 'Loading...' : 'Continue'}
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
         </>
     )
 }

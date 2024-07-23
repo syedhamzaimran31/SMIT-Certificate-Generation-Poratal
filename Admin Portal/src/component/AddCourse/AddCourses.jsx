@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import DeleteModal from '../Modals/AlertModal';
+import { toast } from 'sonner';
 
 function AddCourses() {
     const [show, setShow] = useState(false);
@@ -28,7 +29,7 @@ function AddCourses() {
             }
         )
         if(addCours.status !== 200){
-            return alert("This Course Is Already Exist")
+            return toast.warning("This Course is Already Exists")
         }
         
         window.location.reload()

@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import logo from "../assets/logo.png";
-import '../index.css'
 import { useGlobalState } from '../contextApi/ContextApi';
+import { toast } from 'sonner';
+import '../index.css'
 
 function Otp() {
   const { otpVerificationEmail } = useGlobalState()
@@ -47,14 +48,14 @@ function Otp() {
     } catch (error) {
       if (error.response) {
         if (error.response.status === 404) {
-          alert("Incorrect OTP.Please check your inputs.");
+          toast.warning("Incorrect OTP. Please check your inputs.");
         } else {
-          alert("Internal Server Error.");
+          toast.error("Internal Server Error.");
         }
       } else if (error.request) {
-        alert("Network error. Failed to communicate with server.");
+        toast.error("Network error. Failed to communicate with server.");
       } else {
-        alert("Error issuing certificate: " + error.message);
+        toast.error("Error issuing certificate: " + error.message);
       }
     } finally {
       setLoading(false)

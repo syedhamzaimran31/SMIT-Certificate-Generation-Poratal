@@ -19,7 +19,6 @@ const Settings = () => {
                     <p className='py-3 px-3 border rounded'>{adminData}</p>
                     <Link className='btn chnge_pass_btn' to={'/ce'}>Change Email</Link>
                   </div>
-
                 </div>
                 <div className="mb-3">
                   <Link className='btn chnge_pass_btn' to={'/email'}>Change Password</Link>
