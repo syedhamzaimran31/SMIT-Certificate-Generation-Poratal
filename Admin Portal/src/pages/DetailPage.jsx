@@ -33,7 +33,7 @@ function DetailPage() {
       <div className="">
         <GoBackButton />
       </div>
-      <div className="container border bg-white mt-3 p-3 rounded-3">
+      {/* <div className="container border bg-white mt-3 p-3 rounded-3">
         <h2 className='text-capitalize'>Detail Page:</h2>
         <div className="d-flex justify-content-between align-items-center">
           <p className='text-capitalize fw-semibold'>Course: {params.cn}</p>
@@ -56,29 +56,56 @@ function DetailPage() {
                     </thead>
 
                     <tbody>
-                      {
-                        allStudentsData ? (
-                          allStudentsData.map((data, index) => (
-                            <tr key={index}>
-                              <td>{index + 1}</td>
-                              <td>{data.rollno}</td>
-                              <td>{data.name}</td>
-                              <td>{data.course}</td>
-                              <td>{data.batchNo}</td>
-                            </tr>
-                          ))
-
-                        ) : (
-                          <tr>
-                            <td colSpan="5" className="text-center">No data found</td>
-                          </tr>
-                        )}
                     </tbody>
                   </table>
                 )
               }
             </div>
           </div>
+        </div>
+      </div> */}
+      {/* {
+                allStudentsData ? (
+                  allStudentsData.map((data, index) => (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>{data.rollno}</td>
+                      <td>{data.name}</td>
+                      <td>{data.course}</td>
+                      <td>{data.batchNo}</td>
+                    </tr>
+                  ))
+
+                ) : (
+                  <tr>
+                    <td colSpan="5" className="text-center">No data found</td>
+                  </tr>
+                )} */}
+      <div className="container">
+        <div className="row">
+          {
+            allStudentsData ? (
+              allStudentsData.map((data, index) => (
+                < >
+                  <div className="col-lg-4 py-3 px-3 rounded-3 col-md-6 col-sm-12 border" key={index}>
+                    <div className="">
+                      <h3 className='text-capitalize '>{data.name}</h3>
+                      <p className=''>Roll No : {data.rollno}</p>
+                      <p className=''>COurses : {data.course}</p>
+                      <p className=''>Batchb  : {data.batchNo}</p>
+                      <div className="d-flex justify-content-end">
+                        <span className='bg-primary py-2 px-2 rounded-3 text-white fw-semibold' style={{ fontSize: "14px" }}>pending</span>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ))
+
+            ) : (
+              <tr>
+                <td colSpan="5" className="text-center">No data found</td>
+              </tr>
+            )}
         </div>
       </div>
     </>

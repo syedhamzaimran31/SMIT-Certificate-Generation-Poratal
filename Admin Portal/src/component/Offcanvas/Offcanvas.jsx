@@ -38,10 +38,10 @@ function OffcanvasButton() {
                     </Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                        <div className="d-flex align-items-center profile d-none d-lg-block d-md-block">
-                        </div>
+                    <div className="d-flex align-items-center profile d-none d-lg-block d-md-block">
+                    </div>
                     <div className=" text-start   border-bottom">
-                            <p className="me-2 fw-semobold text-uppercase fw-bold border-bottom tex-start">{adminData}</p>
+                        <p className="me-2 fw-semobold text-uppercase fw-bold border-bottom tex-start">{adminData}</p>
                         <p className="fs-4 tex-start">Admin Portal</p>
                     </div>
                     <ul className="nav flex-column ">

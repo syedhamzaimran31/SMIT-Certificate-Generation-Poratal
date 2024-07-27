@@ -57,10 +57,20 @@ const deletedStudents =async(id)=>{
     }
 }
 
+const GetSearchStudets=async(rollnumber)=>{
+    try {
+        const response = await Students.find({rollno:rollnumber}).exec();
+        return response
+    } catch (error) {
+        throw error
+    }
+}
+
 export {
     addStudents,
     fetchAllStudentsData,
     dummaddStudents,
     getEnrolledData,
-    deletedStudents
+    deletedStudents,
+    GetSearchStudets
 }

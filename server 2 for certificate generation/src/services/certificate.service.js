@@ -30,8 +30,10 @@ cloudinary.config({
 });
 
 const getAllDataAccordingToCondition = async (batchNo, course) => {
-    try {true
-        const students = await Students.find({ batchNo: batchNo, course: course, }).exec();
+    try {
+        console.log(batchNo)
+        const students = await Students.find({ batchNo: batchNo, course: course }).exec();
+        console.log(students)
         return students;
     } catch (error) {
         console.error('Error fetching students:', error);
@@ -60,7 +62,6 @@ const cleanupTempFolder = () => {
             fs.unlinkSync(filePath);
             console.log(`Deleted file: ${filePath}`);
         }
-
         console.log('Temporary folder cleaned up.');
     });
 };
@@ -222,6 +223,7 @@ const getAllCertifiedStudents = async (rollno) => {
         throw error
     }
 }
+
 
 export {
     generateCertificates,

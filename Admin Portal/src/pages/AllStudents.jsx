@@ -6,6 +6,7 @@ import AlertModal from '../component/Modals/AlertModal';
 import axios from 'axios';
 import toastr from 'toastr';
 import 'toastr/build/toastr.min.css';
+import SearchStudents from '../component/SearchStudents/SearchStudents';
 
 function AllStudents() {
     const [allStudentData, setAllStudentData] = useState([]);
@@ -44,8 +45,9 @@ function AllStudents() {
         <div className="bg-white p-3 mb-3 rounded shadow-sm">
             <div className="d-flex justify-content-between">
                 <h2>All Students</h2>
-                <Link className='btn custom_green custom_btn p-2 px-3' to={'/addstudents'} style={{ height: '42px' }}>Add Students</Link>
+                {/* <Link className='btn custom_green custom_btn p-2 px-3' to={'/addstudents'} style={{ height: '42px' }}>Add Students</Link> */}
             </div>
+            <SearchStudents/>
             {/* <input type="text" className="form-control mt-4" placeholder="Enter Student Roll Number" style={{ boxShadow: "none", outline: "none" }} /> */}
             {
                 loading ? <Loader /> : (

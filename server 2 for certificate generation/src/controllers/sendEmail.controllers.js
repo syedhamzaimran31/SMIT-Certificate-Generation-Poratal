@@ -26,7 +26,7 @@ const getCertificates = async (req, res) => {
 
 const searchIussedCertificatyes = async (req, res) => {
     try {
-        const query = req.query.q;
+        const query = req.query.rollnumber;
         if (!query) {
             return res.status(400).json({ error: 'Search query is required.' });
         }

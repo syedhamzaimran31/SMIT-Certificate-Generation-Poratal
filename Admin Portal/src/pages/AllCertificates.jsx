@@ -6,6 +6,7 @@ import { useGlobalState } from '../contextApi/ContextApi';
 import DeleteModal from '../component/Modals/AlertModal';
 import axios from 'axios';
 import '../index.css';
+import SearchCertificate from '../component/SearchCertificate/SearchCertificate';
 
 function AllCertificates() {
     const { totalCertificaet, setTotalCertificate } = useGlobalState()
@@ -50,6 +51,7 @@ function AllCertificates() {
                 <p>Total Certificate:{totalCertificaet}</p>
 
             </div>
+            <SearchCertificate/>
             {/* <input type="text" className="form-control mt-4" placeholder="Enter Student Roll Number" onChange={(e)=>{setGetInput(e.target.value)}} style={{ boxShadow: "none", outline: "none" }} /> */}
             <div className="mt-3" style={{ maxHeight: '400px', overflowY: 'auto' }}>
                 {loading ? (

@@ -147,7 +147,7 @@ const getAllIssuedCertificates = async () => {
 
 const serachData = async (query) => {
     try {
-        const responseData = await Certificate.find({ rollno: { $regex: new RegExp(query, 'i') } });
+        const responseData = await Certificate.find({ rollno:query });
         return responseData
     } catch (error) {
         throw error
