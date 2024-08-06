@@ -101,7 +101,7 @@ const Dashboard = () => {
             👋
           </span>
         </Title>
-        <Text>
+        <Text style={{fontSize:"20px"}}>
           Welcome to the SMIT student portal. You can find all your courses
           listed below
         </Text>
@@ -109,7 +109,6 @@ const Dashboard = () => {
           {courses.map((course, index) => (
             <Col span={8} key={index}>
               <Card
-                title={course.title}
                 bordered={false}
                 style={{
                   border: `1px solid ${course.statusColor}`,
@@ -122,22 +121,23 @@ const Dashboard = () => {
                 hoverable
                 onClick={() => console.log(`Clicked on ${course.title}`)}
               >
-                <p>
+                <h3 style={{paddingBlock:"10px"}}>{course.title}</h3>
+                <p style={{fontSize:"20px"}}>
                   <strong>Batch:</strong> {course.batch}
                 </p>
-                <p>
+                <p style={{fontSize:"20px"}}>
                   <strong>Roll:</strong> {course.roll}
                 </p>
-                <p>
+                <p style={{fontSize:"20px"}}>
                   <strong>City:</strong> {course.city}
                 </p>
-                <p>
+                <p style={{fontSize:"20px"}}>
                   <strong>Campus:</strong> {course.campus}
                 </p>
                 <Badge
                   color={course.statusColor}
                   text={course.status.toUpperCase()}
-                  style={{ padding: "5px 10px" }}
+                  style={{ padding: "5px 10px", }}
                 />
               </Card>
             </Col>
