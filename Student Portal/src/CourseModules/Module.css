@@ -1,0 +1,53 @@
+/* Module.css */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card-container {
+  padding: 20px;
+}
+
+.card-content {
+  font-size: 16px;
+}
+
+.ant-card {
+  cursor: pointer;
+}
+
+.ant-card-head {
+  background-color: #0f50f5;
+  color: white;
+}
+
+.ant-statistic-title {
+  font-size: 16px;
+}
+
+.ant-statistic-content {
+  font-size: 24px;
+}
+
+.student-card-row {
+    margin: 20px 0;
+  }
+  
+  .ant-card {
+    background: linear-gradient(135deg, #f0f0f0 0%, #e6e6e6 100%);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .ant-card-meta-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .ant-card p {
+    margin: 10px 0;
+    color: #555;
+  }
+  
