@@ -123,7 +123,7 @@ const Modules = () => {
                 Attendance: {module.attendence}
               </p>
               <p className="card-content" style={{ fontSize: "26px" }}>
-                Tets Result:{" "}
+                Test Result:{" "}
                 {module.testStatus == "Pass" ? (
                   <CheckCircleOutlined style={{ color: "#3f8600" }} />
                 ) : (
