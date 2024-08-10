@@ -26,7 +26,7 @@ function StudentForm() {
                 rollno: rollno
             });
 
-            const firstObject = response.data; // Get the first object from the response array
+            const firstObject = response.data; 
             setData(firstObject.data[0]);
             setShowTable(true);
         } catch (error) {

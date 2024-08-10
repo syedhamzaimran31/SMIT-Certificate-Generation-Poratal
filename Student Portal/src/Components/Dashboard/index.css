@@ -1,0 +1,42 @@
+.batch-status-container {
+    display: flex;
+    gap: 20px !important;
+}
+
+.abc {
+    gap: 3px 0px;
+}
+
+.batch-status-card {
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-height: 180px;
+    cursor: pointer;
+}
+
+.batch-status-card.completed {
+    border-left: 5px solid green;
+}
+
+.batch-status-card.in-progress {
+    border-left: 5px solid orange;
+}
+
+.batch-status-card.pending {
+    border-left: 5px solid red;
+}
+
+.batch-status-card.dropout {
+    border-left: 5px solid grey;
+}
+
+.batch-status-card h3 {
+    margin-top: 0;
+}
+
+.batch-status-card p {
+    margin: 5px 0;
+}

@@ -1,32 +1,15 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Router from './config/router';
+import "bootstrap/dist/css/bootstrap.min.css";
+import 'typeface-poppins';
+import './App.css'
 
-// import Sharepdf from './Components/sharepdf/Sharepdf';
-// import Savepdf from './Components/Savepdf/Savepdf';
-// import Printpdf from '../Printpdf';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import StudentForm from './pages/StudentForm';
-import CertificatePage from './pages/CertificatePage';
-
-const App = () => {
-  const router = createBrowserRouter([
-{
-  path:'/',
-  element:<>
-  <StudentForm/>
-  </>
-},
-{
-  path:'/cp/:id',
-  element:<>
-  <CertificatePage/>
-  </>
-}
-  ])
+function App() {
   return (
-    <div>
-      <RouterProvider router={router}/>
+    <div className="App">
+      <Router />
     </div>
   );
-};
+}
+
 
 export default App;

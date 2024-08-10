@@ -1,0 +1,15 @@
+.main {
+    background-color: #f8f9fa !important;
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.custom_btn {
+    transition: all .2s ease !important;
+}
+
+.custom_btn:hover {
+    transform: scale(1.08);
+}
