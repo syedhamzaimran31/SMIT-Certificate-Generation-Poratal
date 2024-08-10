@@ -21,6 +21,7 @@ function AllStudents() {
   const exportToExcel = () => {
     const dataToExport = allStudentData.map((certificate) => ({
       RollNo: certificate.rollno,
+      studentName: certificate.name,
       CourseName: certificate.course,
       BatchNo: certificate.batchNo,
     }));
