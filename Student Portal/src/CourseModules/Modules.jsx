@@ -3,6 +3,7 @@ import { Card, Spin, Col, Row, Flex } from "antd";
 import { useNavigate } from "react-router-dom";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import "./Module.css";
+import Header_ from "../Components/Header/Header_";
 
 const { Meta } = Card;
 
@@ -95,6 +96,7 @@ const Modules = () => {
   };
   return (
     <div className="card-container">
+       <Header_ />
       <Row gutter={[16, 16]} justify="center">
         {data.map((module, index) => (
           <Col key={index} xs={24} sm={12} md={8} lg={6}>

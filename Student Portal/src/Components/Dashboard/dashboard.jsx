@@ -12,6 +12,7 @@ import {
 } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
+import Header_ from "../Header/Header_";
 
 const { Header, Content } = Layout;
 const { Title, Text } = Typography;
@@ -51,7 +52,7 @@ const Dashboard = () => {
 
   return (
     <Layout>
-      <Header
+      {/* <Header
         style={{
           display: "flex",
           justifyContent: "space-between",
@@ -93,15 +94,17 @@ const Dashboard = () => {
             LOGOUT
           </Button>
         </div>
-      </Header>
+      </Header> */}
       <Content style={{ padding: "20px", backgroundColor: "#ffff" }}>
+      <Header_ />
+
         <Title level={2}>
           Hi! Syed Hamza Imran{" "}
           <span role="img" aria-label="wave">
             👋
           </span>
         </Title>
-        <Text style={{fontSize:"20px"}}>
+        <Text style={{ fontSize: "20px" }}>
           Welcome to the SMIT student portal. You can find all your courses
           listed below
         </Text>
@@ -121,23 +124,23 @@ const Dashboard = () => {
                 hoverable
                 onClick={() => console.log(`Clicked on ${course.title}`)}
               >
-                <h3 style={{paddingBlock:"10px"}}>{course.title}</h3>
-                <p style={{fontSize:"20px"}}>
+                <h3 style={{ paddingBlock: "10px" }}>{course.title}</h3>
+                <p style={{ fontSize: "20px" }}>
                   <strong>Batch:</strong> {course.batch}
                 </p>
-                <p style={{fontSize:"20px"}}>
+                <p style={{ fontSize: "20px" }}>
                   <strong>Roll:</strong> {course.roll}
                 </p>
-                <p style={{fontSize:"20px"}}>
+                <p style={{ fontSize: "20px" }}>
                   <strong>City:</strong> {course.city}
                 </p>
-                <p style={{fontSize:"20px"}}>
+                <p style={{ fontSize: "20px" }}>
                   <strong>Campus:</strong> {course.campus}
                 </p>
                 <Badge
                   color={course.statusColor}
                   text={course.status.toUpperCase()}
-                  style={{ padding: "5px 10px", }}
+                  style={{ padding: "5px 10px" }}
                 />
               </Card>
             </Col>
