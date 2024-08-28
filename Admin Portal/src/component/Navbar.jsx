@@ -63,7 +63,7 @@ export default function Navbar() {
                     </div>
                     <a href='/'><img src={logo} alt="Saylani Welfare Logo" className='img-fluid ms-3' width="100" /></a>
                 </div>
-                <div className='navs_div d-none d-lg-flex d-md-flex'>
+                <div className='navs_div'>
                     <div className='navs'>
                         <ul>
                             <li>

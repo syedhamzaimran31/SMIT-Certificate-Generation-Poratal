@@ -9,7 +9,7 @@ import { useGlobalState } from '../contextApi/ContextApi';
 import '../index.css';
 
 export default function Dashboard() {
-    const {allCourse, setAllCourses}= useGlobalState()
+    const { allCourse, setAllCourses } = useGlobalState()
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -40,7 +40,7 @@ export default function Dashboard() {
                 </div>
             </div>
             {
-                allCourse? (
+                allCourse ? (
                     <div className="row abc mt-4">
                         {allCourse.map((data) => (
                             <div key={data.id} className="col-lg-4 col-md-6 col-sm-12 mb-3">

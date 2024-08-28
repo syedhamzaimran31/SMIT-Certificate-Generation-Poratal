@@ -5,7 +5,6 @@ import Loader from '../component/Loader/Loader';
 import SendEmail from '../component/SendEmail/SendEmail';
 import PdfButton from '../component/PdfButton/PdfButton';
 import Modals from '../component/Modals/Modals';
-import SearchIssuedCertificate from '../component/SearchIssuedCertificate/SearchIssuedCertificate';
 
 export default function IssuedCertForm() {
     const [allStudentData, setAllStudentData] = useState([]);
@@ -37,7 +36,6 @@ export default function IssuedCertForm() {
                     </div>
                 </div>
             </div>
-            <SearchIssuedCertificate/>
             {/* <input type="text" className="form-control mt-4" placeholder="Enter Student Roll Number" style={{ boxShadow: "none", outline: "none" }} /> */}
             <div className="mt-3" style={{ maxHeight: '400px', overflowY: 'auto' }}>
                 {loading ? (
