@@ -2,7 +2,7 @@ import express from 'express';
 import { login, logout, updateemail, getAdminDatafromDb, sendOtpByEmail, updatepassword, saveCertificate, verifyOtp, addPassword } from '../controllers/user.controller.js';
 import { certificategenerate, getAllcertificategenerate, generatedCertificateBaseOnRollNo, DeleteGeneratedCertificates, getallstudentscertified } from '../controllers/certificate.controller.js';
 import { AllCourse, getAllCours, deletecourse } from '../controllers/courses.controllers.js';
-import { addStudentsData, getAllStudentsData, DeleteGeneratedStudent, getallcoursesenrolledstudents, dummyaddStudentsData, searchStudents } from '../controllers/addStudents.controllers.js';
+import { addStudentsData, getAllStudentsData, DeleteGeneratedStudent, getallcoursesenrolledstudents, dummyaddStudentsData } from '../controllers/addStudents.controllers.js';
 import { getCertificates, searchIussedCertificatyes, sendEmail } from '../controllers/sendEmail.controllers.js';
 const route = express.Router();
 //  post
@@ -28,8 +28,6 @@ route.get('/getAllCertificates', getAllcertificategenerate)
 route.get("/getallissuedcertificate", getCertificates)
 route.get("/serachissuedcertificate", searchIussedCertificatyes)
 route.get("/getallcoursesstudent", getallcoursesenrolledstudents)
-route.get("/searchStudents", searchStudents)
-// route.get("/searchCertificate", searchCertificate)
 // delete
 route.delete('/delete-Courses/:course_id', deletecourse)
 route.delete("/deleteCertificates/:id", DeleteGeneratedCertificates)

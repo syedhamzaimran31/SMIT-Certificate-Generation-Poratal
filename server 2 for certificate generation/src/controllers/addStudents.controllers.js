@@ -1,4 +1,4 @@
-import { addStudents, fetchAllStudentsData, dummaddStudents, getEnrolledData, deletedStudents, GetSearchStudets } from "../services/AddStudents.services.js";
+import { addStudents, fetchAllStudentsData, dummaddStudents, getEnrolledData, deletedStudents } from "../services/AddStudents.services.js";
 
 const addStudentsData = async (req, res) => {
     try {
@@ -57,25 +57,10 @@ const DeleteGeneratedStudent = async (req, res) => {
     }
 }
 
-const searchStudents = async (req, res) => {
-    const rollNumber = req.query.rollnumber;
-    if (!rollNumber) {
-        return res.status(400).send('Query parameter is required');
-    }
-
-    try {
-        const results = await GetSearchStudets(rollNumber);
-        res.json(results);
-    } catch (error) {
-        res.status(500).send('Server error');
-    }
-}
-
 export {
     addStudentsData,
     getAllStudentsData,
     dummyaddStudentsData,
     getallcoursesenrolledstudents,
-    DeleteGeneratedStudent,
-    searchStudents
+    DeleteGeneratedStudent
 }
